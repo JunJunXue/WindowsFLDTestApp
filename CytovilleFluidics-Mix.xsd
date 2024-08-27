@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+David Vrane v1.0 04/10/2017-->
+<xs:schema id="CytovilleFluidics" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="CytovilleFluidics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Mode" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ModeName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="[A-Z,&quot;_&quot;,0-9]+" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Description" type="xs:string"></xs:element>
+              <xs:element name="TimeSegment" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Description" type="xs:string"></xs:element>
+                    <xs:element name="Time">
+                      <xs:simpleType>
+                        <xs:union>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:pattern value="KT[0-9][0-9]" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                          <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                              <xs:enumeration value="SITU" />
+                              <xs:enumeration value="SITD" />
+                              <xs:enumeration value="TUBE" />
+                              <xs:enumeration value="TOGG" />
+                              <xs:enumeration value="SITP" />
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:union>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Valve">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="V1" type="OnOff"></xs:element>
+                          <xs:element name="V2" type="OnOff"></xs:element>
+                          <xs:element name="V3" type="OnOff"></xs:element>
+                          <xs:element name="V4" type="OnOff"></xs:element>
+                          <xs:element name="V5" type="OnOff"></xs:element>
+                          <xs:element name="V6" type="OnOff"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Pump">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="VACUUM">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="Diff" />
+                                <xs:enumeration value="Off" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                          <xs:element name="P1" type="OnOff"></xs:element>
+                          <xs:element name="P2" type="OnOff"></xs:element>
+                          <xs:element name="P3" type="OnOff"></xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Sample">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="FlowRate">
+                            <xs:simpleType>
+                              <xs:restriction base="xs:string">
+                                <xs:enumeration value="Hold" />
+                                <xs:enumeration value="High" />
+                                <xs:enumeration value="Med" />
+                                <xs:enumeration value="Low" />
+                                <xs:enumeration value="Bst" />
+                                <xs:enumeration value="Fsh" />
+                                <xs:enumeration value="Mix" />
+                              </xs:restriction>
+                            </xs:simpleType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="CalibrationTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Pressure">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Diff" type="xs:float"></xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="SampleFlow">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="High" type="stepCnt"></xs:element>
+                    <xs:element name="Med" type="stepCnt"></xs:element>
+                    <xs:element name="Low" type="stepCnt"></xs:element>
+                    <xs:element name="Bst" type="stepCnt"></xs:element>
+                    <xs:element name="Fsh" type="stepCnt"></xs:element>
+                    <xs:element name="Mix" type="stepCnt"></xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="SIT">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="SITU" type="xs:integer"></xs:element>
+                    <xs:element name="SITD" type="xs:integer"></xs:element>
+                    <xs:element name="SITP" type="xs:integer"></xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TimingTable">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="KT01" type="xs:float"></xs:element>
+              <xs:element name="KT02" type="xs:float"></xs:element>
+              <xs:element name="KT03" type="xs:float"></xs:element>
+              <xs:element name="KT04" type="xs:float"></xs:element>
+              <xs:element name="KT05" type="xs:float"></xs:element>
+              <xs:element name="KT06" type="xs:float"></xs:element>
+              <xs:element name="KT07" type="xs:float"></xs:element>
+              <xs:element name="KT08" type="xs:float"></xs:element>
+              <xs:element name="KT09" type="xs:float"></xs:element>
+              <xs:element name="KT10" type="xs:float"></xs:element>
+              <xs:element name="KT11" type="xs:float"></xs:element>
+              <xs:element name="KT12" type="xs:float"></xs:element>
+              <xs:element name="KT13" type="xs:float"></xs:element>
+              <xs:element name="KT14" type="xs:float"></xs:element>
+              <xs:element name="KT15" type="xs:float"></xs:element>
+              <xs:element name="KT16" type="xs:float"></xs:element>
+              <xs:element name="KT17" type="xs:float"></xs:element>
+              <xs:element name="KT18" type="xs:float"></xs:element>
+              <xs:element name="KT19" type="xs:float"></xs:element>
+              <xs:element name="KT20" type="xs:float"></xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="OnOff">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="On|Off" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="stepCnt">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="0" />
+      <xs:maxInclusive value="1000" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
